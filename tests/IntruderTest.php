@@ -53,4 +53,22 @@ class IntruderTest extends \PHPUnit_Framework_TestCase
         $this->intruder->privateProperty = "return of the jedi";
         $this->assertSame("return of the jedi", $this->intruder->privateProperty);
     }
+
+
+    public function testCallPublicMethod()
+    {
+        $this->assertSame("episode", $this->intruder->publicMethod());
+    }
+
+
+    public function testCallProtectedMethod()
+    {
+        $this->assertSame("episode: rogue", $this->intruder->protectedMethod("rogue"));
+    }
+
+
+    public function testCallPrivateMethod()
+    {
+        $this->assertSame("episode: rogue - one", $this->intruder->privateMethod("rogue", "one"));
+    }
 }

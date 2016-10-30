@@ -60,4 +60,13 @@ class Intruder
         $property->setAccessible(true);
         return $property->setValue($this->getInstance(), $value);
     }
+
+
+    public function __call($name, array $arguments)
+    {
+        $method = $this->getReflection()->getMethod($name);
+        $method->setAccessible(true);
+
+        return $method->invokeArgs($this->getInstance(), $arguments);
+    }
 }
