@@ -71,4 +71,10 @@ class IntruderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame("episode: rogue - one", $this->intruder->privateMethod("rogue", "one"));
     }
+
+
+    public function testToString()
+    {
+        $this->assertSame("star wars", (string) $this->intruder);
+    }
 }

@@ -69,4 +69,10 @@ class Intruder
 
         return $method->invokeArgs($this->getInstance(), $arguments);
     }
+
+
+    public function __toString()
+    {
+        return (string) $this->getInstance();
+    }
 }

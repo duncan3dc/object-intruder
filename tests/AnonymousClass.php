@@ -21,4 +21,10 @@ class AnonymousClass
     {
         return "episode: {$subtitle} - {$extra}";
     }
+
+
+    public function __toString()
+    {
+        return "star wars";
+    }
 }
