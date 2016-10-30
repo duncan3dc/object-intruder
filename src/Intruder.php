@@ -52,4 +52,12 @@ class Intruder
         $property->setAccessible(true);
         return $property->getValue($this->getInstance());
     }
+
+
+    public function __set($name, $value)
+    {
+        $property = $this->getReflection()->getProperty($name);
+        $property->setAccessible(true);
+        return $property->setValue($this->getInstance(), $value);
+    }
 }

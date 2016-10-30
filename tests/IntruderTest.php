@@ -32,4 +32,25 @@ class IntruderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame("BB-8", $this->intruder->privateProperty);
     }
+
+
+    public function testSetPublicProperty()
+    {
+        $this->intruder->publicProperty = "a new hope";
+        $this->assertSame("a new hope", $this->class->publicProperty);
+    }
+
+
+    public function testSetProtectedProperty()
+    {
+        $this->intruder->protectedProperty = "the empire strikes back";
+        $this->assertSame("the empire strikes back", $this->intruder->protectedProperty);
+    }
+
+
+    public function testSetPrivateProperty()
+    {
+        $this->intruder->privateProperty = "return of the jedi";
+        $this->assertSame("return of the jedi", $this->intruder->privateProperty);
+    }
 }
