@@ -44,4 +44,12 @@ class Intruder
 
         return $this->_intruderReflection;
     }
+
+
+    public function __get($name)
+    {
+        $property = $this->getReflection()->getProperty($name);
+        $property->setAccessible(true);
+        return $property->getValue($this->getInstance());
+    }
 }
