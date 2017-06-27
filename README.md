@@ -18,12 +18,21 @@ $ composer require duncan3dc/object-intruder
 
 ## Usage
 
-
 ```php
 use duncan3dc\ObjectIntruder\Intruder;
 
 $table = new Intruder(new Table);
 $table->secretMethodNotPublic("Hello", "World");
+$table->privateStuff = "modified";
+```
+
+Unfortunatly due to a limitation of [__call](http://php.net/manual/en/language.oop5.overloading.php#object.call) methods with parameters passed by reference are not supported.
+However there is a workaround available using the `_call()` method:
+```php
+$stuff = "start";
+
+$table = new Intruder(new Table);
+$table->_call("secretMethod", $stuff, Table::MODIFY);
 ```
 
 

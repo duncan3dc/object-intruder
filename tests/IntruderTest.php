@@ -73,6 +73,15 @@ class IntruderTest extends \PHPUnit_Framework_TestCase
     }
 
 
+    public function testCallMethodWithReferences()
+    {
+        $stuff = "start";
+        $result = $this->intruder->_call("referenceMethod", $stuff);
+        $this->assertSame("done", $result);
+        $this->assertSame("modified", $stuff);
+    }
+
+
     public function testToString()
     {
         $this->assertSame("star wars", (string) $this->intruder);

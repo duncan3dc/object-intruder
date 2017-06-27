@@ -23,6 +23,13 @@ class AnonymousClass
     }
 
 
+    public function referenceMethod(&$stuff)
+    {
+        $stuff = "modified";
+        return "done";
+    }
+
+
     public function __toString()
     {
         return "star wars";

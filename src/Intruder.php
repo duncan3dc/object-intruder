@@ -64,6 +64,20 @@ class Intruder
 
     public function __call($name, array $arguments)
     {
+        return $this->_call($name, ...$arguments);
+    }
+
+
+    /**
+     * Allow methods with references to be called.
+     *
+     * @param string The name of the method to call
+     * @param mixed Any parameters the method accepts
+     *
+     * @return mixed
+     */
+    public function _call($name, &...$arguments)
+    {
         $method = $this->getReflection()->getMethod($name);
         $method->setAccessible(true);
 
