@@ -46,9 +46,50 @@ class Intruder
     }
 
 
+    /**
+     * Go hunting for a property up the class hierarchy.
+     *
+     * @param string $name The name of the property we're looking for
+     *
+     * @return \ReflectionProperty
+     */
+    private function getProperty($name)
+    {
+        $class = $this->getReflection();
+
+        # See if the literal class has this property
+        if ($class->hasProperty($name)) {
+            return $class->getProperty($name);
+        }
+
+        # If not, does it come from a trait?
+        foreach ($class->getTraits() as $trait) {
+            if ($trait->hasProperty($name)) {
+                return $trait->getProperty($name);
+            }
+        }
+
+        # How about a parent class?
+        $parent = $class;
+        while (true) {
+            $parent = $parent->getParentClass();
+            if (!$parent) {
+                break;
+            }
+
+            if ($parent->hasProperty($name)) {
+                return $parent->getProperty($name);
+            }
+        }
+
+        # We didn't find the property, but use this to give a sensible error
+        return $class->getProperty($name);
+    }
+
+
     public function __get($name)
     {
-        $property = $this->getReflection()->getProperty($name);
+        $property = $this->getProperty($name);
         $property->setAccessible(true);
         return $property->getValue($this->getInstance());
     }
@@ -56,7 +97,7 @@ class Intruder
 
     public function __set($name, $value)
     {
-        $property = $this->getReflection()->getProperty($name);
+        $property = $this->getProperty($name);
         $property->setAccessible(true);
         return $property->setValue($this->getInstance(), $value);
     }

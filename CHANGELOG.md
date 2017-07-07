@@ -5,6 +5,14 @@ Changelog
 
 --------
 
+## 0.3.0 - 2017-07-07
+
+### Added
+
+* [Intruder] Allow parent properties and trait properties to be accessed.
+
+--------
+
 ## 0.2.0 - 2017-06-27
 
 ### Added
