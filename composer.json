@@ -18,9 +18,9 @@
         "phpunit/phpunit": "^5.6"
     },
     "autoload": {
-        "psr-4": {
-            "duncan3dc\\ObjectIntruder\\": "src/",
-            "duncan3dc\\ObjectIntruderTests\\": "tests/"
-        }
+        "psr-4": {"duncan3dc\\ObjectIntruder\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": {"duncan3dc\\ObjectIntruderTests\\": "tests/"}
     }
 }
