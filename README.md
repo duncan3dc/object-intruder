@@ -1,8 +1,9 @@
 # object-intruder
 A small PHP library to access private/protected properties/methods of objects
 
-[![Build Status](https://img.shields.io/travis/duncan3dc/object-intruder.svg)](https://travis-ci.org/duncan3dc/object-intruder)
-[![Latest Version](https://img.shields.io/packagist/v/duncan3dc/object-intruder.svg)](https://packagist.org/packages/duncan3dc/object-intruder)
+[![Latest Stable Version](https://poser.pugx.org/duncan3dc/object-intruder/version.svg)](https://packagist.org/packages/duncan3dc/object-intruder)
+[![Build Status](https://travis-ci.org/duncan3dc/object-intruder.svg?branch=master)](https://travis-ci.org/duncan3dc/object-intruder)
+[![Coverage Status](https://coveralls.io/repos/github/duncan3dc/object-intruder/badge.svg)](https://coveralls.io/github/duncan3dc/object-intruder)
 
 
 ## Installation
