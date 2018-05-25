@@ -3,8 +3,9 @@
 namespace duncan3dc\ObjectIntruderTests;
 
 use duncan3dc\ObjectIntruder\Intruder;
+use PHPUnit\Framework\TestCase;
 
-class IntruderTest extends \PHPUnit_Framework_TestCase
+class IntruderTest extends TestCase
 {
     private $class;
     private $intruder;
@@ -13,6 +14,14 @@ class IntruderTest extends \PHPUnit_Framework_TestCase
     {
         $this->class = new AnonymousClass;
         $this->intruder = new Intruder($this->class);
+    }
+
+
+    public function testConstructorOnInvalidObject()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Only objects can be intruded");
+        new Intruder('invalid_object');
     }
 
 
