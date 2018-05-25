@@ -3,8 +3,9 @@
 namespace duncan3dc\ObjectIntruderTests;
 
 use duncan3dc\ObjectIntruder\Intruder;
+use PHPUnit\Framework\TestCase;
 
-class InheritanceTest extends \PHPUnit_Framework_TestCase
+class InheritanceTest extends TestCase
 {
     private $class;
     private $intruder;
