@@ -6,9 +6,10 @@ class ParentClass extends GrandparentClass
 {
     use AuntieTrait;
 
+    /** @var string */
     private $parent = "parent";
 
-    private function parent()
+    private function parent(): string
     {
         return "parent";
     }

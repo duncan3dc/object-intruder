@@ -7,71 +7,75 @@ use PHPUnit\Framework\TestCase;
 
 class InheritanceTest extends TestCase
 {
+    /** @var ChildClass */
     private $class;
+
+    /** @var Intruder */
     private $intruder;
 
-    public function setUp()
+
+    public function setUp(): void
     {
         $this->class = new ChildClass();
         $this->intruder = new Intruder($this->class);
     }
 
 
-    public function testChildMethod()
+    public function testChildMethod(): void
     {
         $this->assertSame("child", $this->intruder->child());
     }
 
 
-    public function testParentMethod()
+    public function testParentMethod(): void
     {
         $this->assertSame("parent", $this->intruder->parent());
     }
 
 
-    public function testGrandparentMethod()
+    public function testGrandparentMethod(): void
     {
         $this->assertSame("grandparent", $this->intruder->grandparent());
     }
 
 
-    public function testSiblingMethod()
+    public function testSiblingMethod(): void
     {
         $this->assertSame("sibling", $this->intruder->sibling());
     }
 
 
-    public function testAuntieMethod()
+    public function testAuntieMethod(): void
     {
         $this->assertSame("auntie", $this->intruder->auntie());
     }
 
 
-    public function testChildProperty()
+    public function testChildProperty(): void
     {
         $this->assertSame("child", $this->intruder->child);
     }
 
 
-    public function testParentProperty()
+    public function testParentProperty(): void
     {
         $this->assertSame("parent", $this->intruder->parent);
     }
 
 
-    public function testGrandparentProperty()
+    public function testGrandparentProperty(): void
     {
         $this->assertSame("grandparent", $this->intruder->grandparent);
     }
 
 
-    public function testSiblingProperty()
+    public function testSiblingProperty(): void
     {
         $this->assertSame("sibling", $this->intruder->sibling);
     }
 
 
-    public function testAuntieProperty()
+    public function testAuntieProperty(): void
     {
         $this->assertSame("auntie", $this->intruder->auntie);
     }

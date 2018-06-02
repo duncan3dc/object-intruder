@@ -20,23 +20,29 @@ class Intruder
      *
      * @param object $instance The object to intrude.
      */
-    public function __construct($instance)
+    public function __construct(object $instance)
     {
-        if (!is_object($instance)) {
-            throw new \InvalidArgumentException("Only objects can be intruded");
-        }
-
         $this->_intruderInstance = $instance;
     }
 
 
-    private function getInstance()
+    /**
+     * Get the object we are wrapping.
+     *
+     * @return object
+     */
+    private function getInstance(): object
     {
         return $this->_intruderInstance;
     }
 
 
-    private function getReflection()
+    /**
+     * Get a reflection class of the object we are wrapping.
+     *
+     * @return \ReflectionClass
+     */
+    private function getReflection(): \ReflectionClass
     {
         if ($this->_intruderReflection === null) {
             $this->_intruderReflection = new \ReflectionClass($this->_intruderInstance);
@@ -53,7 +59,7 @@ class Intruder
      *
      * @return \ReflectionProperty
      */
-    private function getProperty($name)
+    private function getProperty(string $name): \ReflectionProperty
     {
         $class = $this->getReflection();
 
@@ -87,7 +93,14 @@ class Intruder
     }
 
 
-    public function __get($name)
+    /**
+     * Get the value of a private/protected property.
+     *
+     * @param string $name The name of the property to get
+     *
+     * @return mixed
+     */
+    public function __get(string $name)
     {
         $property = $this->getProperty($name);
         $property->setAccessible(true);
@@ -95,7 +108,15 @@ class Intruder
     }
 
 
-    public function __set($name, $value)
+    /**
+     * Update the value of private/protected property.
+     *
+     * @param string $name The name of the property to update
+     * @param mixed $value The value to set the property to
+     *
+     * @return void
+     */
+    public function __set(string $name, $value): void
     {
         $property = $this->getProperty($name);
         $property->setAccessible(true);
@@ -103,7 +124,15 @@ class Intruder
     }
 
 
-    public function __call($name, array $arguments)
+    /**
+     * Call a private/protected method.
+     *
+     * @param string $name The name of the method to call
+     * @param array $arguments Any arguments to pass to the method
+     *
+     * @return mixed
+     */
+    public function __call(string $name, array $arguments)
     {
         return $this->_call($name, ...$arguments);
     }
@@ -113,11 +142,11 @@ class Intruder
      * Allow methods with references to be called.
      *
      * @param string $name The name of the method to call
-     * @param array<int, mixed> $arguments Any parameters the method accepts
+     * @param array<int, mixed> ...$arguments Any parameters the method accepts
      *
      * @return mixed
      */
-    public function _call($name, &...$arguments)
+    public function _call(string $name, &...$arguments)
     {
         $method = $this->getReflection()->getMethod($name);
         $method->setAccessible(true);
@@ -126,7 +155,12 @@ class Intruder
     }
 
 
-    public function __toString()
+    /**
+     * Get a string representation of the object we're wrapping.
+     *
+     * @return string
+     */
+    public function __toString(): string
     {
         return (string) $this->getInstance();
     }
