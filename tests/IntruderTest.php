@@ -12,7 +12,7 @@ class IntruderTest extends TestCase
 
     public function setUp()
     {
-        $this->class = new AnonymousClass;
+        $this->class = new AnonymousClass();
         $this->intruder = new Intruder($this->class);
     }
 

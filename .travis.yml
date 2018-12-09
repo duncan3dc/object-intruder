@@ -20,10 +20,18 @@ install:
 
 script:
   - vendor/bin/phpunit
-  - tests/lint.sh
 
 jobs:
   include:
+    - stage: dependency checks
+      script:
+        - vendor/bin/composer-require-checker
+    - stage: static analysis
+      script:
+        - vendor/bin/phpstan analyse --configuration=phpstan-tests.neon --level=max src tests
+    - stage: coding standards
+      script:
+        - vendor/bin/phpcs --standard=phpcs.xml src tests
     - stage: coverage
       script:
         - vendor/bin/phpunit --coverage-clover=coverage.xml

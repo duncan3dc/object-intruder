@@ -12,7 +12,7 @@ class InheritanceTest extends TestCase
 
     public function setUp()
     {
-        $this->class = new ChildClass;
+        $this->class = new ChildClass();
         $this->intruder = new Intruder($this->class);
     }
 

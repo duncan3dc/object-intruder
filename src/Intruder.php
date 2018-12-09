@@ -99,7 +99,7 @@ class Intruder
     {
         $property = $this->getProperty($name);
         $property->setAccessible(true);
-        return $property->setValue($this->getInstance(), $value);
+        $property->setValue($this->getInstance(), $value);
     }
 
 
@@ -112,8 +112,8 @@ class Intruder
     /**
      * Allow methods with references to be called.
      *
-     * @param string The name of the method to call
-     * @param mixed Any parameters the method accepts
+     * @param string $name The name of the method to call
+     * @param array<int, mixed> $arguments Any parameters the method accepts
      *
      * @return mixed
      */
