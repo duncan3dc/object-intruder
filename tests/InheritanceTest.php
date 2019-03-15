@@ -39,6 +39,14 @@ class InheritanceTest extends TestCase
     }
 
 
+    public function testMissingMethod(): void
+    {
+        $this->expectException(\ReflectionException::class);
+        $this->expectExceptionMessage("Method noSuchMethod does not exist");
+        $this->intruder->noSuchMethod();
+    }
+
+
     public function testSiblingMethod(): void
     {
         $this->assertSame("sibling", $this->intruder->sibling());
@@ -66,6 +74,14 @@ class InheritanceTest extends TestCase
     public function testGrandparentProperty(): void
     {
         $this->assertSame("grandparent", $this->intruder->grandparent);
+    }
+
+
+    public function testMissingProperty(): void
+    {
+        $this->expectException(\ReflectionException::class);
+        $this->expectExceptionMessage("Property noSuchProperty does not exist");
+        $this->intruder->noSuchProperty;
     }
 
 
