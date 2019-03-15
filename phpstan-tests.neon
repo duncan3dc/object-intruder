@@ -1,3 +1,5 @@
 parameters:
   ignoreErrors:
+    - '/Call to an undefined method duncan3dc\\ObjectIntruder\\Intruder::/'
+    - '/Access to an undefined property duncan3dc\\ObjectIntruder\\Intruder::/'
     - '/Parameter #1 \$instance of class duncan3dc\\ObjectIntruder\\Intruder constructor expects object, string given/'

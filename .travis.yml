@@ -27,7 +27,8 @@ jobs:
         - vendor/bin/composer-require-checker
     - stage: static analysis
       script:
-        - vendor/bin/phpstan analyse --configuration=phpstan-tests.neon --level=max src tests
+        - vendor/bin/phpstan analyse --level=max src
+        - vendor/bin/phpstan analyse --configuration=phpstan-tests.neon --level=max tests
     - stage: coding standards
       script:
         - vendor/bin/phpcs --standard=phpcs.xml src tests
