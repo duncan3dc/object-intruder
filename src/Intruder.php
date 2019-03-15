@@ -68,14 +68,7 @@ class Intruder
             return $class->getProperty($name);
         }
 
-        # If not, does it come from a trait?
-        foreach ($class->getTraits() as $trait) {
-            if ($trait->hasProperty($name)) {
-                return $trait->getProperty($name);
-            }
-        }
-
-        # How about a parent class?
+        # If not this class then check its parents
         $parent = $class;
         while (true) {
             $parent = $parent->getParentClass();
