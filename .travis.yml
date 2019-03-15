@@ -20,19 +20,20 @@ install:
 
 script:
   - vendor/bin/phpunit
+  - vendor/bin/composer-require-checker
 
 jobs:
   include:
-    - stage: dependency checks
-      script:
-        - vendor/bin/composer-require-checker
-    - stage: static analysis
+
+    - stage: code quality
       script:
         - vendor/bin/phpstan analyse --level=max src
         - vendor/bin/phpstan analyse --configuration=phpstan-tests.neon --level=max tests
+
     - stage: coding standards
       script:
         - vendor/bin/phpcs --standard=phpcs.xml src tests
+
     - stage: coverage
       script:
         - vendor/bin/phpunit --coverage-clover=coverage.xml
