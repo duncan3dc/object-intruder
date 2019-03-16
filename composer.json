@@ -23,7 +23,8 @@
         "phpunit/phpunit": "^9.6.31"
     },
     "autoload": {
-        "psr-4": {"duncan3dc\\ObjectIntruder\\": "src/"}
+        "psr-4": {"duncan3dc\\ObjectIntruder\\": "src/"},
+        "classmap": ["hack.php"]
     },
     "autoload-dev": {
         "psr-4": {"duncan3dc\\ObjectIntruderTests\\": "tests/"}
