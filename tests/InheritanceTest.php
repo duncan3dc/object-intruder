@@ -17,7 +17,7 @@ class InheritanceTest extends TestCase
     public function setUp(): void
     {
         $this->class = new ChildClass();
-        $this->intruder = new Intruder($this->class);
+        $this->intruder = Intruder::intrude(ChildClass::class);
     }
 
 

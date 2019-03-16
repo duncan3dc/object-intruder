@@ -2,6 +2,14 @@
 
 namespace duncan3dc\ObjectIntruder;
 
+use function class_exists;
+use PhpParser\Node;
+use PhpParser\NodeTraverser;
+use PhpParser\NodeVisitorAbstract;
+use PhpParser\ParserFactory;
+use PhpParser\PrettyPrinter\Standard;
+use Roave\BetterReflection\BetterReflection;
+
 class Intruder implements IntruderInterface
 {
     /**
@@ -16,9 +24,58 @@ class Intruder implements IntruderInterface
 
 
     /**
+     * @param object $instance
+     *
+     * @return object
+     */
+    public static function intrude(string $original): object
+    {
+        $parts = explode("\\", $original);
+        $newClassName = array_pop($parts) . "_Intruded";
+        $newFullyQualified = implode("\\", $parts) . "\\{$newClassName}";
+
+        if (class_exists($newFullyQualified, false)) {
+            return new $newFullyQualified();
+        }
+
+        $traverser = new NodeTraverser();
+
+        $traverser->addVisitor(new class($newClassName) extends NodeVisitorAbstract {
+            private $newClassName;
+            public function __construct(string $newClassName)
+            {
+                $this->newClassName = $newClassName;
+            }
+            public function leaveNode(Node $node) {
+                if ($node instanceof Node\Stmt\Class_) {
+                    $node->name = new Node\Name($this->newClassName);
+                }
+                if ($node instanceof Node\Stmt\Property || $node instanceof Node\Stmt\ClassMethod) {
+                    $node->flags |= Node\Stmt\Class_::MODIFIER_PUBLIC;
+                    $node->flags &= ~Node\Stmt\Class_::MODIFIER_PROTECTED;
+                    $node->flags &= ~Node\Stmt\Class_::MODIFIER_PRIVATE;
+                }
+            }
+        });
+
+        $filename = (new BetterReflection())->classReflector()->reflect($original)->getFileName();
+        $code = file_get_contents($filename);
+        $ast = (new ParserFactory())->create(ParserFactory::ONLY_PHP7)->parse($code);
+        $nodes = $traverser->traverse($ast);
+
+        $prettyPrinter = new Standard();
+        file_put_contents("/tmp/test.php", $prettyPrinter->prettyPrintFile($nodes));
+        require "/tmp/test.php";
+
+        return new $newFullyQualified();
+    }
+
+
+    /**
      * Create a new instance.
      *
      * @param object $instance The object to intrude.
+     * @deprecated Use Intruder::intrude() instead
      */
     public function __construct(object $instance)
     {

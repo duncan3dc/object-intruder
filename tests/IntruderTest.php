@@ -17,7 +17,7 @@ class IntruderTest extends TestCase
     public function setUp(): void
     {
         $this->class = new AnonymousClass();
-        $this->intruder = new Intruder($this->class);
+        $this->intruder = Intruder::intrude(AnonymousClass::class);
     }
 
 
