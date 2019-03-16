@@ -2,7 +2,7 @@
 
 namespace duncan3dc\ObjectIntruder;
 
-class Intruder
+class Intruder implements IntruderInterface
 {
     /**
      * @var object $instance The object to intrude.
