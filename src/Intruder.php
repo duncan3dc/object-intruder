@@ -2,7 +2,7 @@
 
 namespace duncan3dc\ObjectIntruder;
 
-class Intruder
+class Intruder implements IntruderInterface
 {
     private object $_intruderInstance;
 
