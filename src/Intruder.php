@@ -16,9 +16,21 @@ class Intruder implements IntruderInterface
 
 
     /**
+     * @param object $instance
+     *
+     * @return IntruderInterface
+     */
+    public static function intrude(object $instance): IntruderInterface
+    {
+        return new self($instance);
+    }
+
+
+    /**
      * Create a new instance.
      *
      * @param object $instance The object to intrude.
+     * @deprecated Use Intruder::intrude() instead
      */
     public function __construct(object $instance)
     {

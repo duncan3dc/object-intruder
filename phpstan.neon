@@ -1,0 +1,11 @@
+services:
+
+	-
+		class: duncan3dc\ObjectIntruder\PHPStan\StaticIntrudeMethod
+		tags:
+			- phpstan.broker.dynamicStaticMethodReturnTypeExtension
+
+	-
+		class: duncan3dc\ObjectIntruder\PHPStan\PropertiesExtension
+		tags:
+			- phpstan.broker.propertiesClassReflectionExtension
