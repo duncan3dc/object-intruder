@@ -5,6 +5,16 @@ Changelog
 
 --------
 
+## 1.0.0 - 2020-12-10
+
+### Changes
+
+* [Support] Added PHP 8 support.
+* [Support] Dropped PHP 7.0, 7.1, 7.2, 7.3 support.
+* [Support] Dropped HHVM support.
+
+--------
+
 ## 0.3.0 - 2017-07-07
 
 ### Added
