@@ -42,7 +42,11 @@ class InheritanceTest extends TestCase
     public function testMissingMethod(): void
     {
         $this->expectException(\ReflectionException::class);
-        $this->expectExceptionMessage("Method noSuchMethod does not exist");
+        if (\PHP_MAJOR_VERSION < 8) {
+            $this->expectExceptionMessage("Method noSuchMethod does not exist");
+        } else {
+            $this->expectExceptionMessage("Method duncan3dc\\ObjectIntruderTests\\ChildClass::noSuchMethod() does not exist");
+        }
         $this->intruder->noSuchMethod();
     }
 
@@ -80,7 +84,11 @@ class InheritanceTest extends TestCase
     public function testMissingProperty(): void
     {
         $this->expectException(\ReflectionException::class);
-        $this->expectExceptionMessage("Property noSuchProperty does not exist");
+        if (\PHP_MAJOR_VERSION < 8) {
+            $this->expectExceptionMessage("Property noSuchProperty does not exist");
+        } else {
+            $this->expectExceptionMessage("Property duncan3dc\\ObjectIntruderTests\\ChildClass::\$noSuchProperty does not exist");
+        }
         $this->intruder->noSuchProperty;
     }
 
