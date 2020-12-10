@@ -4,15 +4,9 @@ namespace duncan3dc\ObjectIntruder;
 
 class Intruder
 {
-    /**
-     * @var object $instance The object to intrude.
-     */
-    private $_intruderInstance;
+    private object $_intruderInstance;
 
-    /**
-     * @var \ReflectionClass $reflection The reflected instance.
-     */
-    private $_intruderReflection;
+    private ?\ReflectionClass $_intruderReflection = null;
 
 
     /**

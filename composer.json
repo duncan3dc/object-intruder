@@ -17,7 +17,7 @@
     "require-dev": {
         "infection/infection": "^0.20.2",
         "maglnet/composer-require-checker": "^2.0",
-        "phpstan/phpstan": "^0.11.4",
+        "phpstan/phpstan": "^0.12.59",
         "squizlabs/php_codesniffer": "^3.4",
         "phpunit/phpunit": "^8.0"
     },
@@ -31,7 +31,7 @@
         "test": [
             "vendor/bin/phpunit",
             "vendor/bin/composer-require-checker",
-            "vendor/bin/phpstan analyse --level=max src",
+            "vendor/bin/phpstan analyse --level=max --configuration=phpstan-src.neon src",
             "vendor/bin/phpstan analyse --level=max --configuration=phpstan-tests.neon tests",
             "vendor/bin/phpcs --standard=phpcs.xml src tests",
             "vendor/bin/infection --min-covered-msi=100",
