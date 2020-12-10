@@ -2,7 +2,7 @@
 A small PHP library to access private/protected properties/methods of objects
 
 [![release](https://poser.pugx.org/duncan3dc/object-intruder/version.svg)](https://packagist.org/packages/duncan3dc/object-intruder)
-[![build](https://travis-ci.org/duncan3dc/object-intruder.svg?branch=master)](https://travis-ci.org/duncan3dc/object-intruder)
+[![build](https://github.com/duncan3dc/object-intruder/workflows/buildcheck/badge.svg?branch=master)](https://github.com/duncan3dc/object-intruder/actions?query=branch%3Amaster+workflow%3Abuildcheck)
 [![coverage](https://codecov.io/gh/duncan3dc/object-intruder/graph/badge.svg)](https://codecov.io/gh/duncan3dc/object-intruder)
 
 
