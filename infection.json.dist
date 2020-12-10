@@ -9,7 +9,7 @@
         "text": "infection.log"
     },
     "mutators": {
-        "CastString": false,
-        "@default": true
+        "@default": true,
+        "CastString": false
     }
 }
