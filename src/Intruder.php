@@ -10,6 +10,25 @@ class Intruder
 
 
     /**
+     * @param class-string $className The fully qualified class to instantiate
+     * @param mixed ...$args Any arguments to pass to the constructor
+     */
+    public static function construct(string $className, ...$args): self
+    {
+        $reflection = new \ReflectionClass($className);
+        $instance = $reflection->newInstanceWithoutConstructor();
+
+        $constructor = $reflection->getMethod('__construct');
+        $constructor->setAccessible(true);
+        $constructor->invoke($instance, ...$args);
+
+        $intruder = new self($instance);
+        $intruder->_intruderReflection = $reflection;
+        return $intruder;
+    }
+
+
+    /**
      * Create a new instance.
      *
      * @param object $instance The object to intrude.

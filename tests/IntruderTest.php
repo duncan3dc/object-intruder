@@ -28,6 +28,14 @@ class IntruderTest extends TestCase
     }
 
 
+    public function testConstruct1(): void
+    {
+        $intruder = Intruder::construct(PrivateConstructor::class, 'hello', 77);
+        $this->assertSame('hello', $intruder->text);
+        $this->assertSame(77, $intruder->number);
+    }
+
+
     public function testGetPublicProperty(): void
     {
         $this->assertSame("R2-D2", $this->intruder->publicProperty);
