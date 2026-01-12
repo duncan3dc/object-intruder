@@ -1,4 +1,8 @@
 parameters:
+  excludePaths:
+    - tests/*Class.php
+    - tests/PrivateConstructor.php
+    - tests/*Trait.php
   ignoreErrors:
     - '/Call to an undefined method duncan3dc\\ObjectIntruder\\Intruder::/'
     - '/Access to an undefined property duncan3dc\\ObjectIntruder\\Intruder::/'

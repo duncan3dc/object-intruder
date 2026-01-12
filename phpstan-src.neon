@@ -1,3 +1,6 @@
 parameters:
-  checkGenericClassInNonGenericObjectType: false
-  checkMissingIterableValueType: false
+  ignoreErrors:
+    - identifier: missingType.iterableValue
+    - identifier: missingType.generics
+    - '/Cannot cast object to string\./'
+    - '/Method duncan3dc\\ObjectIntruder\\Intruder::__toString\(\) should return string but returns mixed\./'
