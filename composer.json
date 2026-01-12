@@ -37,5 +37,11 @@
             "vendor/bin/infection --min-covered-msi=100",
             "@composer validate --strict"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "ocramius/package-versions": true,
+            "infection/extension-installer": true
+        }
     }
 }
