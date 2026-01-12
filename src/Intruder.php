@@ -19,7 +19,9 @@ class Intruder
         $instance = $reflection->newInstanceWithoutConstructor();
 
         $constructor = $reflection->getMethod('__construct');
-        $constructor->setAccessible(true);
+        if (PHP_VERSION_ID < 80100) {
+            $constructor->setAccessible(true);
+        }
         $constructor->invoke($instance, ...$args);
 
         $intruder = new self($instance);
@@ -109,7 +111,9 @@ class Intruder
     public function __get(string $name)
     {
         $property = $this->getProperty($name);
-        $property->setAccessible(true);
+        if (PHP_VERSION_ID < 80100) {
+            $property->setAccessible(true);
+        }
         return $property->getValue($this->getInstance());
     }
 
@@ -125,7 +129,9 @@ class Intruder
     public function __set(string $name, $value): void
     {
         $property = $this->getProperty($name);
-        $property->setAccessible(true);
+        if (PHP_VERSION_ID < 80100) {
+            $property->setAccessible(true);
+        }
         $property->setValue($this->getInstance(), $value);
     }
 
@@ -155,7 +161,9 @@ class Intruder
     public function _call(string $name, &...$arguments)
     {
         $method = $this->getReflection()->getMethod($name);
-        $method->setAccessible(true);
+        if (PHP_VERSION_ID < 80100) {
+            $method->setAccessible(true);
+        }
 
         return $method->invokeArgs($this->getInstance(), $arguments);
     }

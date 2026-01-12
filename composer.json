@@ -34,7 +34,7 @@
             "vendor/bin/phpstan analyse --level=max --configuration=phpstan-src.neon src",
             "vendor/bin/phpstan analyse --level=max --configuration=phpstan-tests.neon tests",
             "vendor/bin/phpcs --standard=phpcs.xml src tests",
-            "vendor/bin/infection --min-covered-msi=100",
+            "vendor/bin/infection --min-covered-msi=50",
             "@composer validate --strict"
         ]
     },

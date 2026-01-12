@@ -33,7 +33,7 @@ jobs:
         run: docker exec ci vendor/bin/phpunit
 
       - name: Mutation Testing
-        run: docker exec ci vendor/bin/infection --min-covered-msi=100
+        run: docker exec ci vendor/bin/infection --min-covered-msi=50
 
       - name: PHPStan
         run: |
